@@ -1,3 +1,7 @@
+<%
+java_base_dir = "#{node[:java][:java_home]}/jre"
+%>
 #!/bin/sh
 
-java -jar <%= node[:minecraft][:base_dir] %>/application/minecraft.jar
+export LD_LIBRARY_PATH=<%= java_base_dir %>/lib/amd64
+<%= java_base_dir %>/bin/java -jar <%= node[:minecraft][:base_dir] %>/application/minecraft.jar
