@@ -7,4 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-Chef::Log.info node[:minecraft]
+case node[:minecraft][:deployment]
+  when 'both'
+    include_recipe 'application'
+  when 'application'
+    include_recipe 'application'
+  else
+    Chef::Log.error 'Unknown deployment method supplied'
+end

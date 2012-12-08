@@ -1,3 +1,4 @@
+default[:minecraft][:deployment] = 'application'
 default[:minecraft][:base_dir] = '/opt/minecraft/'
 
 default[:minecraft][:servers][0][:name] = "Lucas's Server"
