@@ -9,9 +9,9 @@
 
 case node[:minecraft][:deployment]
   when 'both'
-    include_recipe 'application'
+    include_recipe "#{@cookbook_name}::application"
   when 'application'
-    include_recipe 'application'
+    include_recipe "#{@cookbook_name}::application"
   else
     Chef::Log.error 'Unknown deployment method supplied'
 end

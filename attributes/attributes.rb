@@ -1,5 +1,5 @@
 default[:minecraft][:deployment] = 'application'
-default[:minecraft][:base_dir] = '/opt/minecraft/'
+default[:minecraft][:base_dir] = '/opt/minecraft'
 
 default[:minecraft][:servers][0][:name] = "Lucas's Server"
 default[:minecraft][:servers][0][:parse_name] = 'lucas_server'

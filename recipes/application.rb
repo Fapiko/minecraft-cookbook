@@ -7,13 +7,18 @@
 # All rights reserved - Do Not Redistribute
 #
 
+directory "#{node[:minecraft][:base_dir]}/application" do
+  recursive true
+  mode 0755
+end
+
 remote_file "#{node[:minecraft][:base_dir]}/application/minecraft.jar" do
   source 'https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft.jar'
   mode 0644
   action :create_if_missing
 end
 
-cookbook_file "#{node[:minecraft][:base_dir]}/application/minecraft_icon.png" do
+cookbook_file "#{node[:minecraft][:base_dir]}/application/icon.png" do
   mode 0644
   action :create_if_missing
 end
@@ -23,6 +28,29 @@ template '/etc/skel/minecraft.desktop' do
   mode 0644
 end
 
+template "#{node[:minecraft][:base_dir]}/application/minecraft.sh" do
+  source 'minecraft.sh.erb'
+  mode 0755
+end
+
 node[:etc][:passwd].each do |user, data|
-  Chef::Log.warn data
+
+  if data['uid'] >= 1000 && data['dir'] != '/nonexistent'
+
+    template "#{data['dir']}/.local/share/applications/minecraft.desktop" do
+      source 'minecraft.desktop.erb'
+      owner user
+      group user
+      mode 0744
+    end
+
+    template "#{data['dir']}/Desktop/minecraft.desktop" do
+      source 'minecraft.desktop.erb'
+      owner user
+      group user
+      mode 0744
+    end
+
+  end
+
 end
