@@ -1,4 +1,4 @@
-# minecraft cookbook
+# Minecraft cookbook
 
 # Requirements
 

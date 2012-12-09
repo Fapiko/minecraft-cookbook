@@ -9,4 +9,4 @@ java_base_dir = "#{node[:java][:java_home]}/jre"
 ##
 
 export LD_LIBRARY_PATH=<%= java_base_dir %>/lib/amd64
-<%= java_base_dir %>/bin/java  -Xmx1024M -Xms1024M -jar <%= node[:minecraft][:base_dir] %>/server/minecraft_server.jar -nogui
+<%= java_base_dir %>/bin/java  -Xmx1024M -Xms1024M -jar <%= node[:minecraft][:base_dir] %>/server/minecraft_server.jar nogui

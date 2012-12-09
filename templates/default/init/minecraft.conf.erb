@@ -8,4 +8,4 @@ description "Minecraft Server"
 start on runlevel [2345]
 stop on runlevel [!2345]
 
-exec <%= node[:minecraft][:base_dir] %>/server/server.sh
+exec su -c '<%= node[:minecraft][:base_dir] %>/server/server.sh' minecraft
