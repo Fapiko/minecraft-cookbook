@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: minecraft
-# Recipe:: default
+# Recipe:: application
 #
 # Copyright (C) 2012 Lucas Jandrew
 #

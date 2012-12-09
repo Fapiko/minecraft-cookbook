@@ -1,0 +1,11 @@
+# Minecraft Server
+#
+# Note: This file is managed by Chef. Any
+# manual changes WILL be reverted.
+
+description "Minecraft Server"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+exec <%= node[:minecraft][:base_dir] %>/server/server.sh
