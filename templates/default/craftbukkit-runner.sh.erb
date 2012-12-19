@@ -1,0 +1,25 @@
+#!/bin/bash
+set -o nounset
+set -o errexit
+set -o xtrace
+
+CRAFTBUKKIT_PARENT_PATH="/opt/minecraft"
+CRAFTBUKKIT_LOGS_PARENT_PATH="/var/log/minecraft"
+CRAFTBUKKIT_JAR_PATH="${CRAFTBUKKIT_PARENT_PATH}/craftbukkit-beta-1.4.5-R0.2.jar"
+CRAFTBUKKIT_ARGS="\
+    --online-mode true \
+    --bukkit-settings ${CRAFTBUKKIT_PARENT_PATH}/craftbukkit.yml \
+    --config ${CRAFTBUKKIT_PARENT_PATH}/server.properties \
+    --plugins ${CRAFTBUKKIT_PARENT_PATH}/craftbukkit_plugins \
+    --log-pattern ${CRAFTBUKKIT_LOGS_PARENT_PATH}/craftbukkit_server.log \
+    --log-limit 0 \
+    --log-count 1 \
+    --log-append true \
+    --log-strip-color \
+	--world-dir ${CRAFTBUKKIT_PARENT_PATH}/ramdisk/
+"
+#  \
+# --date-format FIXME \
+# --noconsole \
+
+java -Xms4G -Xmx7G -jar "${CRAFTBUKKIT_JAR_PATH}" ${CRAFTBUKKIT_ARGS}
