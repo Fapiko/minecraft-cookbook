@@ -3,7 +3,7 @@ set -o nounset
 set -o errexit
 set -o xtrace
 
-CRAFTBUKKIT_PARENT_PATH="#{node[:minecraft][:base_dir]}/server"
+CRAFTBUKKIT_PARENT_PATH="<%= node[:minecraft][:base_dir] %>/server"
 CRAFTBUKKIT_LOGS_PARENT_PATH="/var/log/minecraft"
 CRAFTBUKKIT_JAR_PATH="${CRAFTBUKKIT_PARENT_PATH}/craftbukkit-beta.jar"
 CRAFTBUKKIT_ARGS="\
