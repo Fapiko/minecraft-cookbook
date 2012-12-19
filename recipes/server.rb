@@ -32,7 +32,7 @@ remote_file "#{node[:minecraft][:base_dir]}/server/minecraft_server.jar" do
 end
 
 remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit-beta.jar" do
-  source 'http://cbukk.it/craftbukkit-beta.jar'
+  source 'https://dl.dropbox.com/u/50768347/craftbukkit-1.4.5-R0.2.jar'
   mode 0644
   user 'minecraft'
   group 'minecraft'
