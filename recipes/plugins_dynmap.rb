@@ -23,7 +23,7 @@ end
 
 template "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap/configuration.txt" do
   source 'plugins/dynmap/configuration.txt.erb'
-  mode 0744
+  mode 0644
   user 'minecraft'
   group 'minecraft'
 end
