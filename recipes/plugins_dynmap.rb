@@ -8,7 +8,7 @@
 #
 
 remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap.jar" do
-  source 'http://dev.bukkit.org/media/files/656/83/dynmap-1.2-bin.zip'
+  source 'https://dl.dropbox.com/u/50768347/dynmap.jar'
   mode 0644
   user 'minecraft'
   group 'minecraft'
