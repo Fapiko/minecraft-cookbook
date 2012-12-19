@@ -27,3 +27,18 @@ template "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap/confi
   user 'minecraft'
   group 'minecraft'
 end
+
+stud_instance 'minecraft-mapper' do
+  source_port 8123
+  destination_port 25601
+  certificate_domain 'fapiko.com'
+  action :enable
+end
+
+service 'stud' do
+  case node[:platform]
+    when 'ubuntu'
+      provider Chef::Provider::Service::Upstart
+  end
+  action :start
+end
