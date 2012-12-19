@@ -65,8 +65,8 @@ template "#{node[:minecraft][:base_dir]}/server/server.properties" do
   group 'minecraft'
 end
 
-cookbook_file "#{node[:minecraft][:base_dir]}/server/ops.txt" do
-  contents 'fapiko'
+file "#{node[:minecraft][:base_dir]}/server/ops.txt" do
+  content 'fapiko'
   mode 0744
   user 'minecraft'
   group 'minecraft'
