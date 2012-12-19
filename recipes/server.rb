@@ -60,14 +60,14 @@ end
 
 template "#{node[:minecraft][:base_dir]}/server/server.properties" do
   source 'server.properties.erb'
-  mode 0744
+  mode 0644
   user 'minecraft'
   group 'minecraft'
 end
 
 file "#{node[:minecraft][:base_dir]}/server/ops.txt" do
   content 'fapiko'
-  mode 0744
+  mode 0644
   user 'minecraft'
   group 'minecraft'
 end
@@ -81,7 +81,7 @@ end
 
 template "#{node[:minecraft][:base_dir]}/server/craftbukkit.yml" do
   source 'craftbukkit.yml.erb'
-  mode 0744
+  mode 0644
   user 'minecraft'
   group 'minecraft'
 end
