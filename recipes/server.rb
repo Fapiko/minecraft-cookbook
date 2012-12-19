@@ -93,4 +93,31 @@ template "#{node[:minecraft][:base_dir]}/server/craftbukkit.yml" do
   group 'minecraft'
 end
 
+directory "#{node[:minecraft][:base_dir]}/server/ramdisk" do
+  recursive true
+  mode 0755
+  owner 'minecraft'
+  group 'minecraft'
+end
+
+mount "#{node[:minecraft][:base_dir]}/server/ramdisk" do
+  fstype 'tmpfs'
+  device 'ramdisk'
+  options ['mode=0755', 'size=6g']
+  action [:mount, :enable]
+end
+
+directory "#{node[:minecraft][:base_dir]}/server/ramdisk_backups" do
+  recursive true
+  mode 0755
+  owner 'root'
+  group 'root'
+end
+
+cron 'backup_minecraft_ramdisk' do
+  minute '*/3'
+  user 'root'
+  command "rsync -a #{node[:minecraft][:base_dir]}/server/ramdisk #{node[:minecraft][:base_dir]}/server/ramdisk_backups"
+end
+
 include_recipe "#{@cookbook_name}::plugins_dynmap"
