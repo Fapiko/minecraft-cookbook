@@ -14,6 +14,13 @@ directory "#{node[:minecraft][:base_dir]}/server" do
   group 'minecraft'
 end
 
+directory "/var/log/minecraft" do
+  recursive true
+  mode 0755
+  owner 'root'
+  group 'minecraft'
+end
+
 user 'minecraft' do
   system true
 end
