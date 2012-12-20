@@ -41,6 +41,7 @@ node[:etc][:passwd].each do |user, data|
       owner user
       group user
       mode 0755
+      recursive true
     end
 
     template "#{data['dir']}/.local/share/applications/minecraft.desktop" do
