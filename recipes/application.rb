@@ -37,11 +37,23 @@ node[:etc][:passwd].each do |user, data|
 
   if data['uid'] >= 1000 && data['dir'] != '/nonexistent'
 
+    directory "#{data['dir']}/.local/share/applications" do
+      owner user
+      group user
+      mode 0755
+    end
+
     template "#{data['dir']}/.local/share/applications/minecraft.desktop" do
       source 'minecraft.desktop.erb'
       owner user
       group user
       mode 0744
+    end
+
+    directory "#{data['dir']}/Desktop" do
+      owner user
+      group user
+      mode 0755
     end
 
     template "#{data['dir']}/Desktop/minecraft.desktop" do
