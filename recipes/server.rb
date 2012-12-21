@@ -73,7 +73,7 @@ template "#{node[:minecraft][:base_dir]}/server/server.properties" do
 end
 
 file "#{node[:minecraft][:base_dir]}/server/ops.txt" do
-  content 'fapiko'
+  content "fapiko\nskittydog"
   mode 0644
   user 'minecraft'
   group 'minecraft'
