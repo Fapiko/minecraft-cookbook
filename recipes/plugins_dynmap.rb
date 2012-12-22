@@ -12,7 +12,6 @@ remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap.ja
   mode 0644
   user 'minecraft'
   group 'minecraft'
-  action :create_if_missing
 end
 
 directory "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap" do

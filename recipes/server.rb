@@ -35,7 +35,6 @@ remote_file "#{node[:minecraft][:base_dir]}/server/minecraft_server.jar" do
   mode 0644
   user 'minecraft'
   group 'minecraft'
-  action :create_if_missing
 end
 
 remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit-beta.jar" do
@@ -43,7 +42,6 @@ remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit-beta.jar" do
   mode 0644
   user 'minecraft'
   group 'minecraft'
-  action :create_if_missing
 end
 
 template "#{node[:minecraft][:base_dir]}/server/server.sh" do
