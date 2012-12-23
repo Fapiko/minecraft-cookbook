@@ -24,12 +24,12 @@ cookbook_file "#{node[:minecraft][:base_dir]}/application/icon.png" do
 end
 
 template '/etc/skel/minecraft.desktop' do
-  source 'minecraft.desktop.erb'
+  source 'application/minecraft.desktop.erb'
   mode 0644
 end
 
 template "#{node[:minecraft][:base_dir]}/application/minecraft.sh" do
-  source 'minecraft.sh.erb'
+  source 'application/minecraft.sh.erb'
   mode 0755
 end
 

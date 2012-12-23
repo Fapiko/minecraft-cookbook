@@ -22,4 +22,4 @@ CRAFTBUKKIT_ARGS="\
 # --date-format FIXME \
 # --noconsole \
 
-java -Xms4G -Xmx7G -jar "${CRAFTBUKKIT_JAR_PATH}" ${CRAFTBUKKIT_ARGS}
+java -Xms<%= node[:minecraft][:server][:heap_min_ram] %> -Xmx<%= node[:minecraft][:server][:heap_max_ram] %> -jar "${CRAFTBUKKIT_JAR_PATH}" ${CRAFTBUKKIT_ARGS}
