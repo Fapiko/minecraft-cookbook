@@ -7,12 +7,23 @@
 # All rights reserved - Do Not Redistribute
 #
 
-remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap.jar" do
-  source node[:minecraft][:plugins][:dynmap][:plugin_jar]
+package 'unzip'
+
+remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap.zip" do
+  source node[:minecraft][:plugins][:dynmap][:plugin_zip]
   mode 0644
   user 'minecraft'
   group 'minecraft'
-  checksum node[:minecraft][:plugins][:dynmap][:plugin_jar_checksum]
+  checksum node[:minecraft][:plugins][:dynmap][:plugin_zip_checksum]
+end
+
+bash 'unzip-dynmap' do
+  user 'minecraft'
+  cwd "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/"
+  code <<-EOH
+  unzip dynmap.zip
+  rm dynmap.zip
+  EOH
 end
 
 directory "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap" do
@@ -28,17 +39,19 @@ template "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap/confi
   group 'minecraft'
 end
 
-stud_instance 'minecraft-mapper' do
-  source_port 8123
-  destination_port 25601
-  certificate_domain 'fapiko.com'
-  action :enable
-end
-
-service 'stud' do
-  case node[:platform]
-    when 'ubuntu'
-      provider Chef::Provider::Service::Upstart
+if !Chef::Config.solo
+  stud_instance 'minecraft-mapper' do
+    source_port 8123
+    destination_port 25601
+    certificate_domain 'fapiko.com'
+    action :enable
   end
-  action :start
+
+  service 'stud' do
+    case node[:platform]
+      when 'ubuntu'
+        provider Chef::Provider::Service::Upstart
+    end
+    action :start
+  end
 end
