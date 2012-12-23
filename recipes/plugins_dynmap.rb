@@ -12,6 +12,7 @@ remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap.ja
   mode 0644
   user 'minecraft'
   group 'minecraft'
+  checksum node[:minecraft][:plugins][:dynmap][:plugin_jar_checksum]
 end
 
 directory "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap" do

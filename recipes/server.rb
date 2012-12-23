@@ -30,18 +30,19 @@ group 'minecraft' do
   system true
 end
 
-remote_file "#{node[:minecraft][:base_dir]}/server/minecraft_server.jar" do
-  source 'https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar'
-  mode 0644
-  user 'minecraft'
-  group 'minecraft'
-end
+#remote_file "#{node[:minecraft][:base_dir]}/server/minecraft_server.jar" do
+#  source 'https://s3.amazonaws.com/MinecraftDownload/launcher/minecraft_server.jar'
+#  mode 0644
+#  user 'minecraft'
+#  group 'minecraft'
+#end
 
 remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit-beta.jar" do
   source node[:minecraft][:craftbukkit][:server_jar]
   mode 0644
   user 'minecraft'
   group 'minecraft'
+  checksum node[:minecraft][:craftbukkit][:server_jar_checksum]
 end
 
 template "#{node[:minecraft][:base_dir]}/server/server.sh" do
