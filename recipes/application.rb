@@ -45,7 +45,7 @@ node[:etc][:passwd].each do |user, data|
     end
 
     template "#{data['dir']}/.local/share/applications/minecraft.desktop" do
-      source 'minecraft.desktop.erb'
+      source 'application/minecraft.desktop.erb'
       owner user
       group user
       mode 0744
@@ -58,7 +58,7 @@ node[:etc][:passwd].each do |user, data|
     end
 
     template "#{data['dir']}/Desktop/minecraft.desktop" do
-      source 'minecraft.desktop.erb'
+      source 'application/minecraft.desktop.erb'
       owner user
       group user
       mode 0744
