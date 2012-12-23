@@ -9,6 +9,8 @@
 
 package 'unzip'
 
+include_recipe 'stud'
+
 remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins/dynmap.zip" do
   source node[:minecraft][:plugins][:dynmap][:plugin_zip]
   mode 0644
