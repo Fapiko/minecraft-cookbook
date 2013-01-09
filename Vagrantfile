@@ -57,7 +57,16 @@ Vagrant::Config.run do |config|
             }
         } ,
         :minecraft => {
-          :deployment => 'server'
+          :deployment => 'server',
+          :plugins => {
+            :mctelnet => {
+                :allow_authless_localhost => true
+            }
+          },
+          :server => {
+            :heap_min_ram => '128M',
+            :heap_max_ram => '256M'
+          }
         }
     }
 

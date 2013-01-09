@@ -1,0 +1,33 @@
+# This file is managed by Chef. Any manual changes will be lost
+
+#Setup information
+encryptPasswords: true
+listenAddress: 0.0.0.0
+telnetPort: 8765
+allowAuthlessLocalhost: <%= node[:minecraft][:plugins][:mctelnet][:allow_authless_localhost] %>
+#Root login information
+rootUser: console
+rootPass: <%= node[:minecraft][:plugins][:mctelnet][:root_password] %>
+rootEncrypted: true
+#Other users
+users:
+#    fapiko:
+#        log: true
+#        password: changeme
+#        commands: list, plugman, help
+#        passEncrypted: false
+
+
+
+23:32:43 [INFO] [MCTelnet] Loading MCTelnet v1.2.7
+23:32:43 [INFO] [dynmap] Loading dynmap v1.3-1455
+23:32:43 [INFO] [MCTelnet] Enabling MCTelnet v1.2.7
+23:32:43 [INFO] [MCTelnet] - Starting Up! Version: 1.2.7 by bekvon
+23:32:43 [SEVERE] Error occurred while enabling MCTelnet v1.2.7 (Is it up to date?)
+java.lang.NoSuchMethodError: com.bekvon.bukkit.mctelnet.MCTelnet.getConfiguration()Lorg/bukkit/util/config/Configuration;
+        at com.bekvon.bukkit.mctelnet.MCTelnet.onEnable(MCTelnet.java:77)
+        at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:217)
+        at org.bukkit.plugin.java.JavaPluginLoader.enablePlugin(JavaPluginLoader.java:457)
+        at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:381)
+        at org.bukkit.craftbukkit.v1_4_6.CraftServer.loadPlugin(CraftServer.java:278)
+        at org.bukkit.craftbukkit.v1_4_6.CraftServer.enablePlugins(CraftServer.java:260

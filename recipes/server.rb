@@ -51,16 +51,16 @@ end
 remote_file "#{node[:minecraft][:base_dir]}/server/craftbukkit-beta.jar" do
   source node[:minecraft][:craftbukkit][:server_jar]
   mode 0644
-  user 'minecraft'
-  group 'minecraft'
+  user node[:minecraft][:user]
+  group node[:minecraft][:user]
   checksum node[:minecraft][:craftbukkit][:server_jar_checksum]
 end
 
 template "#{node[:minecraft][:base_dir]}/server/craftbukkit-runner.sh" do
   source 'server/craftbukkit-runner.sh.erb'
   mode 0755
-  user 'minecraft'
-  group 'minecraft'
+  user node[:minecraft][:user]
+  group node[:minecraft][:user]
 end
 
 template '/etc/init/minecraft.conf' do
@@ -71,36 +71,36 @@ end
 template "#{node[:minecraft][:base_dir]}/server/server.properties" do
   source 'server/server.properties.erb'
   mode 0644
-  user 'minecraft'
-  group 'minecraft'
+  user node[:minecraft][:user]
+  group node[:minecraft][:user]
 end
 
 file "#{node[:minecraft][:base_dir]}/server/ops.txt" do
   content node[:minecraft][:server][:ops].join("\n")
   mode 0644
-  user 'minecraft'
-  group 'minecraft'
+  user node[:minecraft][:user]
+  group node[:minecraft][:user]
 end
 
 directory "#{node[:minecraft][:base_dir]}/server/craftbukkit_plugins" do
   recursive true
   mode 0755
-  owner 'minecraft'
-  group 'minecraft'
+  user node[:minecraft][:user]
+  group node[:minecraft][:user]
 end
 
 template "#{node[:minecraft][:base_dir]}/server/craftbukkit.yml" do
   source 'server/craftbukkit.yml.erb'
   mode 0644
-  user 'minecraft'
-  group 'minecraft'
+  user node[:minecraft][:user]
+  group node[:minecraft][:user]
 end
 
 directory "#{node[:minecraft][:base_dir]}/server/ramdisk" do
   recursive true
   mode 0755
-  owner 'minecraft'
-  group 'minecraft'
+  user node[:minecraft][:user]
+  group node[:minecraft][:user]
 end
 
 mount "#{node[:minecraft][:base_dir]}/server/ramdisk" do
@@ -123,4 +123,7 @@ cron 'backup_minecraft_ramdisk' do
   command "rsync -a #{node[:minecraft][:base_dir]}/server/ramdisk #{node[:minecraft][:base_dir]}/server/ramdisk_backups"
 end
 
-include_recipe "#{@cookbook_name}::plugins_dynmap"
+node[:minecraft][:plugins][:load].each do |plugin|
+  include_recipe "#{@cookbook_name}::plugins_#{plugin}"
+end
+
