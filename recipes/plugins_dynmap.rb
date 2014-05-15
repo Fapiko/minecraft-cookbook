@@ -1,12 +1,3 @@
-#
-# Cookbook Name:: minecraft
-# Recipe:: plugins_dynmap
-#
-# Copyright (C) 2012 Lucas Jandrew
-#
-# All rights reserved - Do Not Redistribute
-#
-
 package 'unzip'
 
 include_recipe 'stud'

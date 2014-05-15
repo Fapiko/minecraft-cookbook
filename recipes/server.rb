@@ -1,12 +1,3 @@
-#
-# Cookbook Name:: minecraft
-# Recipe:: server
-#
-# Copyright (C) 2012 Lucas Jandrew
-#
-# All rights reserved - Do Not Redistribute
-#
-
 directory "#{node[:minecraft][:base_dir]}/server" do
   recursive true
   mode 0755

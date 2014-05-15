@@ -1,12 +1,3 @@
-#
-# Cookbook Name:: minecraft
-# Recipe:: application
-#
-# Copyright (C) 2012 Lucas Jandrew
-#
-# All rights reserved - Do Not Redistribute
-#
-
 directory "#{node[:minecraft][:base_dir]}/application" do
   recursive true
   mode 0755
